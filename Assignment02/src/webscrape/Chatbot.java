@@ -78,6 +78,7 @@ public class Chatbot {
 						
 						Document genreRanked = Jsoup.connect(URLgenre).get();
 						
+						System.out.println(genreRanked);
 						listGenreRanking(genreRanked, genreList);
 					
 						
@@ -109,12 +110,14 @@ public class Chatbot {
 	}
 	
 	public static String setUrl(Document doc, String input) {
-		int i = Integer.parseInt(input);
+		int i = Integer.parseInt(input) - 1;
 		String url = "";
 		Elements elem = doc.select(".quicklinks .subnav_item_main a[href]");
-		Element theelem = elem.first();
+		Element theelem = elem.get(i);
 		url = theelem.attr("href");
+		System.out.println(url);
 		url = "https://www.imdb.com" + url;
+		
 		
 		return url;
 	}
