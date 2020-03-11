@@ -26,12 +26,12 @@ public class WebScrape {
 		final String URLtvshows = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250";
 		
 		String URLgenre = "";
-		//Comment by Carlos
+
 		try{
 			int count2 = 0;
 			while(count2 >= 0) {
 				if(count2 > 0) {
-					System.out.println("Would you like another recomedation? (Type no to quit)");
+					System.out.println("Would you like another recommedation? (Type no to quit)");
 					if(scan.nextLine().equals("no"))
 						break;
 				}
@@ -41,14 +41,15 @@ public class WebScrape {
 				while(count >= 0) {
 					if(count > 0)
 						System.out.print("I am sorry, ");
-					System.out.println("Do you want movies or tvshows recommendations?");
-					input = scan.nextLine();
+					System.out.println("Do you want a recommendation for a movie or a tv show?");
+					// ignore upper case inputs to facilitate string comparison
+					input = scan.nextLine().toLowerCase();
 					
-					if(input.equals("movies")) {
+					if(input.equals("movie")) {
 						document = Jsoup.connect(URLmovies).get();
 						break;
 					}
-					else if(input.equals("tvshows")){
+					else if(input.equals("tv show")){
 						document = Jsoup.connect(URLtvshows).get();
 						break;
 					}
@@ -60,7 +61,7 @@ public class WebScrape {
 					if(count > 0)
 						System.out.print("I am sorry, ");
 					
-					System.out.println("Do you want a recomendation based on genre or just rankings?");
+					System.out.println("Do you want a recomendation based on genre or just their rankings?");
 					input = scan.nextLine();
 					if(input.equals("rankings")) {
 						listRanking(document, list);
