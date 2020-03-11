@@ -26,7 +26,7 @@ public class WebScrape {
 		final String URLtvshows = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250";
 		
 		String URLgenre = "";
-		
+		//COMMENT BY DANIEL
 		try{
 			int count2 = 0;
 			while(count2 >= 0) {
