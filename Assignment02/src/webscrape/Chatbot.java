@@ -32,6 +32,9 @@ public class Chatbot {
 			int count2 = 0;
 			while(count2 >= 0) {
 				if(count2 > 0) {
+					genreList.clear();
+					genre.clear();
+					list.clear();
 					System.out.println("Would you like another recomedation? (Type no to quit)");
 					if(scan.nextLine().equals("no"))
 						break;
@@ -78,7 +81,6 @@ public class Chatbot {
 						
 						Document genreRanked = Jsoup.connect(URLgenre).get();
 						
-						System.out.println(genreRanked);
 						listGenreRanking(genreRanked, genreList);
 					
 						
@@ -115,7 +117,6 @@ public class Chatbot {
 		Elements elem = doc.select(".quicklinks .subnav_item_main a[href]");
 		Element theelem = elem.get(i);
 		url = theelem.attr("href");
-		System.out.println(url);
 		url = "https://www.imdb.com" + url;
 		
 		
