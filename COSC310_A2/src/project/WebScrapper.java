@@ -2,12 +2,18 @@ package project;
 
 
 import java.util.ArrayList;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.Scanner; 
+
+/**
+*The WebScrapper class will retrieve the information available in the IMDB webpage
+*this class will print a list of 10 movies depending of the selection of the user
+*the selection can be movies and tv shows, and the order of the list will represent
+*the top 10 based on ranking and if wanted for a specific genre
+*/
 
 public class WebScrapper {
 	
