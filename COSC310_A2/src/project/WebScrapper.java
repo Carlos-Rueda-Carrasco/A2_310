@@ -21,16 +21,20 @@ public class WebScrapper {
 	
 	
 	public WebScrapper(){
-		
+		//String storing the URL for movies
 		final String URLmovies = "https://www.imdb.com/chart/top/?ref_=nv_mv_250";
-		
+		//String storing the URL for tvshows
 		final String URLtvshows = "https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250";
-		
+		//This string will store the URL for the chosen genre
 		String URLgenre = "";
 		
 		try{
+			//counter for the while loop
 			int count2 = 0;
+			
 			while(count2 >= 0) {
+				//if after first iteration of the while loop
+				//this if statement will clear the ArrayList and ask the user for next iteration
 				if(count2 > 0) {
 					genreList.clear();
 					genre.clear();
@@ -39,9 +43,11 @@ public class WebScrapper {
 					if(scan.nextLine().equals("no"))
 						break;
 				}
+				
 				int count = 0;
 				String input = "";
 				
+				//while loop until the user inputs one of the 4 options (movie, movies, tvshows, tv shows)
 				while(count >= 0) {
 					if(count > 0)
 						System.out.print("I am sorry, ");
@@ -60,6 +66,7 @@ public class WebScrapper {
 					count++;
 				}
 				
+				//while loop until the user inputs one of the 4 options (rankings, ranking, genres, genre)
 				count = 0;
 				while(count >= 0) {
 					if(count > 0)
@@ -72,7 +79,7 @@ public class WebScrapper {
 						printList(list);
 						break;
 					}
-					else if(input.equals("genre")||input.equals("genre")) {
+					else if(input.equals("genres")||input.equals("genre")) {
 						listGenre(document, genre);
 						printList(genre);
 						System.out.println("Which genre would you like? (input the number)");
@@ -99,6 +106,9 @@ public class WebScrapper {
 		}
 	}
 	
+	//This method will scrapped the webpage and produce the list of the top 10 based on genre
+	//@Document doc parameter, has all the webpage information
+	//@ArrayList<String> pararmeter, li is the list of the top 10 movies
 	public static void listGenreRanking(Document doc, ArrayList<String> li) {
 		int i = 1;
 	
@@ -111,6 +121,9 @@ public class WebScrapper {
 	
 	}
 	
+	//This method will set up the URL of the genre
+	//@Document doc parameter, has all the webpage information
+	//@String input parameter, is the path of the genre
 	public static String setUrl(Document doc, String input) {
 		int i = Integer.parseInt(input) - 1;
 		String url = "";
@@ -123,7 +136,9 @@ public class WebScrapper {
 		return url;
 	}
 	
-	
+	//This method will make list all the genre available
+	//@Document doc parameter, has all the webpage information
+	//@ArrayList<String> li parameter, will list all the genre available
 	public static void listGenre(Document doc, ArrayList<String> li) {
 		for(Element row : doc.select(".quicklinks li")) {
 			li.add(row.text());
@@ -131,6 +146,9 @@ public class WebScrapper {
 		
 	}
 	
+	//This method will make list the top 10 movies or tv shows based on rankings
+	//@Document doc parameter, has all the webpage information
+	//@ArrayList<String> li parameter, will list the top 10
 	public static void listRanking(Document doc, ArrayList<String> li) {
 		int i = 1;
 		for(Element row : doc.select(".lister-list .titleColumn a")) {
@@ -142,6 +160,8 @@ public class WebScrapper {
 		
 	}
 	
+	//This method will print the Array list
+	//@ArrayList<String> li parameter, a list to be printed
 	public static void printList(ArrayList<String> al) {
 		int i = 1;
 		for(String str : al) {
