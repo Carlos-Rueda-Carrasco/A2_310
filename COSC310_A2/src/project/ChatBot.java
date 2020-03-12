@@ -49,19 +49,24 @@ public class ChatBot {
         	}
         	else if(count > 0) {
         		if(flag1 == true) {
+				// print a positive response to their positive input, random index of the array
         			System.out.println(positiveResponse[(rand.nextInt(2))]);
         		}
         		else {
+				// print a negative response to their negative input, random index of the array
         			System.out.println(negativeResponse[(rand.nextInt(2))]);
         		}
-        		
+        		// check second response
     	        input = scan.nextLine();
     	        if(checkString(input) == true) {
+				// if a negative response then just end the conversation
 	        		if(checkResponse(input, count) == true) {
 	        			if(flag2 == false) {
 	        				System.out.println(Goodbye[0]);
 	        				break;
 	        			}
+					// if the second response (which asked if they were sure they wanted to not converse)
+					// open the webscrapper object and give them output with movies recommendations, etc
 	        			WebScrapper w = new WebScrapper();
 	        			System.out.println(Goodbye[0]);
 	        			break;
@@ -71,7 +76,7 @@ public class ChatBot {
         }
 		scan.close();
 	}
-	
+	// checks the state of the resonses and sets the variables accordingly to fit the agents narrative
 	public static boolean checkResponse(String str, int count) {
 		if(positiveResponse(str) == true) {
 			if(count == 0) {
