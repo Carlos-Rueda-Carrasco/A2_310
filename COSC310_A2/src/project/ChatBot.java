@@ -5,8 +5,10 @@ import java.util.Scanner;
 public class ChatBot {
 	private static Scanner scan = new Scanner(System.in);
 	private static Random rand = new Random();
-	//for simplicity and size we will work with lowercase words,(transform user input into lower case)
-	//Fill up with more valid user inputs
+	/** 
+	* variables that store some possible inputs by the user, which we use to compare in methods below to see if the responses are
+	* positive or negative. Also have greetings and goodbyes (set dialogues for the conversation)
+	*/
 	private static String[] positiveInput = {"yes","yeah","y","yep","affirmative","positive","agreed","sure","ok"};
 	private static String[] negativeInput = {"no", "nah", "n", "nop", "negative", "disagree"};
 	private static String[] positiveResponse = {"Great! I can recommend you a movie or tv show, would you like it?", 
@@ -25,16 +27,19 @@ public class ChatBot {
 	public static void main(String[] args) {
 		String input = "";
 		System.out.println(initial);
-		
+		// counter for the while loop
 		int count = 0;
         
         while (count >= 0){
         	
         	if(count == 0) {
-	            System.out.println(Greeting[(rand.nextInt(3))]);
+	            	// randomly choose greeting message 
+			System.out.println(Greeting[(rand.nextInt(3))]);
 	        	input = scan.nextLine();
 	        	input.toLowerCase();
-	        	if(checkString(input) == true) {
+	        	// check if the user had a possitve response and proceed with the narrative and checks the inputs validity
+			if(checkString(input) == true) {
+				// check if they give a positive response to the first quesiton and proceed
 	        		if(checkResponse(input, count) == true) {
 	        			count++;
 	        		}
@@ -90,7 +95,7 @@ public class ChatBot {
 			return false;
 		}
 	}
-	
+	// this method checks if the user response is positive by iterating through the list of the positive responses declared in the class above 
 	public static boolean positiveResponse(String str) {
 		for (int i = 0; i < positiveInput.length; i++) {
             if (str.indexOf(positiveInput[i]) != -1)
@@ -98,7 +103,7 @@ public class ChatBot {
         }
 		return false;
 	}
-	
+	// this method checks if the user repsonse is negative by interating through the list of negative responses declared in the class above
 	public static boolean negativeResponse(String str) {
 		for (int i = 0; i < negativeInput.length; i++){
             if (str.indexOf(negativeInput[i]) != -1)
@@ -106,9 +111,8 @@ public class ChatBot {
         }
 		return false;
 	}
-	//This method will convert str into a complete lowercase String to standarize all user input to lowercase and 
-	//check if there is any non alphabetical character inside the string in order to ask the user to retype its input
-	//Allows user to input a number as long as its 1 digit long(ie > 9 wont be accepted(couldnt finish))
+	// This method will convert str into a complete lowercase String to standarize all user input to lowercase and 
+	// check if there is any non alphabetical character inside the string in order to ask the user to retype its input
 	public static boolean checkString(String str) {		
 		char ch[] = str.toCharArray();
 		for(int i = 0; i < str.length(); i ++) {
