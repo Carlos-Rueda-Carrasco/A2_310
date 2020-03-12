@@ -35,7 +35,7 @@ public class WebScrapper {
 					genreList.clear();
 					genre.clear();
 					list.clear();
-					System.out.println("Would you like another recomedation? (Type no to quit)");
+					System.out.println("Would you like another recommedation? (type no to quit)");
 					if(scan.nextLine().equals("no"))
 						break;
 				}
@@ -49,11 +49,11 @@ public class WebScrapper {
 					// make user input easier to compare with potential responses
 					input = scan.nextLine().toLowerCase();
 					
-					if(input.equals("movies")) {
+					if(input.equals("movies")||input.equals("movie")) {
 						document = Jsoup.connect(URLmovies).get();
 						break;
 					}
-					else if(input.equals("tvshows")){
+					else if(input.equals("tvshows")||input.equals("tv shows")){
 						document = Jsoup.connect(URLtvshows).get();
 						break;
 					}
@@ -65,17 +65,17 @@ public class WebScrapper {
 					if(count > 0)
 						System.out.print("I am sorry, ");
 					
-					System.out.println("Do you want a recomendation based on genre or just rankings?");
+					System.out.println("Do you want a recommendation based on genre or just rankings?");
 					input = scan.nextLine().toLowerCase();
-					if(input.equals("rankings")) {
+					if(input.equals("rankings")||input.equals("ranking")) {
 						listRanking(document, list);
 						printList(list);
 						break;
 					}
-					else if(input.equals("genre")) {
+					else if(input.equals("genre")||input.equals("genre")) {
 						listGenre(document, genre);
 						printList(genre);
-						System.out.println("Which genre would you like? (Input the number)");
+						System.out.println("Which genre would you like? (input the number)");
 						input = scan.nextLine();
 						URLgenre = setUrl(document, input);
 						
