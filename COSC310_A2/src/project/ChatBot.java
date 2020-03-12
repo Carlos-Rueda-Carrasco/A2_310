@@ -7,7 +7,7 @@ public class ChatBot {
 	private static Random rand = new Random();
 	//for simplicity and size we will work with lowercase words,(transform user input into lower case)
 	//Fill up with more valid user inputs
-	private static String[] positiveInput = {"yes","yeah","y","yep","affirmative","positive","agreed"};
+	private static String[] positiveInput = {"yes","yeah","y","yep","affirmative","positive","agreed","sure","ok"};
 	private static String[] negativeInput = {"no", "nah", "n", "nop", "negative", "disagree"};
 	private static String[] positiveResponse = {"Great! I can recommend you a movie or tv show, would you like it?", 
 			"Would you like a movie or tvshow recommendation"};
@@ -18,7 +18,6 @@ public class ChatBot {
 			"Whats up, do want to know something?"};
 	private static String initial = "Welcome to iRecommend interactive chat bot";
 	private static String[] Goodbye= {"Thank you for using iRecommend, we hope your interaction was succesful"};
-	private static String[] closingStatement = {"Would you like to get another recomendation? (type \"q\" to quit"};
 	public static boolean flag1 = true;
 	public static boolean flag2 = true;
 	
@@ -122,5 +121,3 @@ public class ChatBot {
 	}
 	
 }
-
-
