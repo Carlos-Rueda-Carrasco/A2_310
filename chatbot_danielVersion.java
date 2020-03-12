@@ -35,6 +35,7 @@ public class ChatBot {
 	            System.out.println(Greeting[(rand.nextInt(3))]);
 	        	input = scan.nextLine();
         	}
+        	
         	char response = checkInput(input);
         	boolean flag = checkString(input);
         	
@@ -55,13 +56,15 @@ public class ChatBot {
                     System.out.println(negativeResponse[(rand.nextInt(2))]);
                 } else if (!(secondResponse)) {
                     secondResponse = true;
-                    WebScrapper w = new WebScrapper();
                 } 
             }
+        	
         	count++;
-        	if(secondResponse = true) {
+        	
+        	if(secondResponse == true) {
         		 System.out.println(Goodbye);
                  System.out.println(closingStatement);
+                 
         	}
         }
 		scan.close();
