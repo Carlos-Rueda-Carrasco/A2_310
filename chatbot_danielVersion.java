@@ -24,32 +24,45 @@ public class ChatBot {
 	public static void main(String[] args) {
 		String input = "";
 		System.out.println(initial);
-        System.out.println(Greeting[(rand.nextInt() % 3)]);
-        input = scan.nextLine();
+		
+		int count = 0;
 
         boolean firstResponse = false;
         boolean secondResponse = false;
-
-        while (input != "q"){
-            if (checkString(input) && checkInput(input) == 'p') {
+        
+        while (count >= 0){
+        	if(count == 0) {
+	            System.out.println(Greeting[(rand.nextInt(3))]);
+	        	input = scan.nextLine();
+        	}
+        	char response = checkInput(input);
+        	boolean flag = checkString(input);
+        	
+        	
+        	if (flag && response == 'p') {
                 if (!(firstResponse)){
                     firstResponse = true;
-                    System.out.println(positiveResponse[(rand.nextInt() % 2)]);
-                    input = scan.nextLine();
+                    System.out.println(positiveResponse[(rand.nextInt(2))]);
                 } else if (!(secondResponse)){
-                    //go to WebScraper.java
+                	secondResponse = true;
+                    WebScrapper w = new WebScrapper();
                 }
-            } else if (checkInput(input) == 'n'){
+            } 
+        	
+        	else if (flag && response == 'n'){
                 if (!(firstResponse)){
                     firstResponse = true;
-                    System.out.println(negativeResponse[(rand.nextInt() % 2)]);
-                    input = scan.nextLine();
+                    System.out.println(negativeResponse[(rand.nextInt(2))]);
                 } else if (!(secondResponse)) {
                     secondResponse = true;
-                    System.out.println(Goodbye);
-                    System.out.println(closingStatement);
+                    WebScrapper w = new WebScrapper();
                 } 
             }
+        	count++;
+        	if(secondResponse = true) {
+        		 System.out.println(Goodbye);
+                 System.out.println(closingStatement);
+        	}
         }
 		scan.close();
 	}
@@ -81,7 +94,7 @@ public class ChatBot {
         }
         //for every word in negativeInput check if it is past of str if so, return 'n' for negative
         for (int i = 0; i < negativeInput.length; i++){
-            if (str.indexOf(negativeInput[i] != -1))
+            if (str.indexOf(negativeInput[i]) != -1)
                 return 'n';
         }
         //else return 'x' if str could not be identified as a postive or negative sentence. 
