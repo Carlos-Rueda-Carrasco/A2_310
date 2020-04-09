@@ -1,0 +1,4 @@
+Here are the 3 things u need to download to use JWNL, NLP, and WordNet:
+https://www.apache.org/dyn/closer.cgi/opennlp/opennlp-1.9.2/apache-opennlp-1.9.2-bin.zip
+https://sourceforge.net/projects/jwordnet/
+https://wordnet.princeton.edu/download
