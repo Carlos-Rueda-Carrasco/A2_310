@@ -1,0 +1,5 @@
+//returns int 0 = very negative, 1 = negative, 2 = neutral, 3 = positive, 4 = very positive
+public static int sentiment(String s) {
+	    NLP.init();
+	    return NLP.findSentiment(s);
+	}
