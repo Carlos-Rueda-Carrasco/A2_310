@@ -1,6 +1,9 @@
 package project;
 import java.util.Random;
 import java.util.Scanner;
+import org.tartarus.snowball.ext.PorterStemmer;
+
+
 
 public class ChatBot {
 	private static Scanner scan = new Scanner(System.in);
@@ -9,8 +12,8 @@ public class ChatBot {
 	* variables that store some possible inputs by the user, which we use to compare in methods below to see if the responses are
 	* positive or negative. Also have greetings and goodbyes (set dialogues for the conversation)
 	*/
-	private static String[] positiveInput = {"yes","yeah","y","yep","affirmative","positive","agreed","sure","ok"};
-	private static String[] negativeInput = {"no", "nah", "n", "nop", "negative", "disagree"};
+	private static String[] positiveInput = {"yes","yeah","y","yep","affirmative","positive","agreed","sure","ok", "fine"};
+	private static String[] negativeInput = {"no", "nah", "n", "nop", "negative", "disagree", "not", "disagreed", "never", "nope"};
 	private static String[] positiveResponse = {"Great! I can recommend you a movie or tv show, would you like it?", 
 			"Would you like a movie or tvshow recommendation"};
 	private static String[] negativeResponse = {"Im sorry you are upset, but the only thing I can do a recommendation to watch movies or tv shows, would you like one?",
@@ -121,12 +124,30 @@ public class ChatBot {
 	public static boolean checkString(String str) {		
 		char ch[] = str.toCharArray();
 		for(int i = 0; i < str.length(); i ++) {
-			if((Character.isAlphabetic(ch[i]) == false && str.length() > 1 ) || ch[i] == ' '){
-				System.out.println("There is an invalid character in your input " + ch[i] + " please reenter your input with valid form ");
+			if((Character.isAlphabetic(ch[i]) == false && str.length() > 1 ) || ch[i] == ' '|| spelling(str, positiveInput, negativeInput)==false){
+				System.out.println("There is an invalid character in your input " + ch[i] + " please reenter your input with valid form or potential spelling mistake");
 				return false;
 			}
 		}
+		
 		return true;
 	}
+	
+	// this method checks to see if the stemmed inputted response from the user matches any of the positive and negative repsonses
+	// basically eliminates any spelling mistakes to a confirmation or a negation (yes and no type response)
+	public static boolean spelling(String str, String[] pInputs, String[] nInputs) {
+		PorterStemmer ps = new PorterStemmer();
+		ps.setCurrent(str);
+		ps.stem();
+		String stemmedInput = ps.getCurrent();
+		for(int i = 0; i < pInputs.length; i++) {
+			if(stemmedInput == pInputs[i]&&stemmedInput==nInputs[i]) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	
 }
