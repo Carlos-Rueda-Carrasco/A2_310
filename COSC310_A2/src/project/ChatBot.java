@@ -115,30 +115,27 @@ public class ChatBot {
 	// based on the sentiment value for the last adjective in their response
 	public static boolean positiveResponse(String str) throws IOException {
 		String posModel_filePath = "filepath";
-		// Create language toolkit object with desired model
+		//Create language toolkit object with desired model
 		LanguageToolkit tool = new LanguageToolkit(posModel_filePath);
 		// Determine coref and
 		String mentions = tool.FindCoreferences(str);
-		// KeyValuePair is used to
+		//KeyValuePair formation of tokens and their tags
 		List<KeyValuePair> tagged = tool.POS(mentions);
 		List<String> adjectives = tool.FindAdjectives(tagged);
 		int value=1;
-		// If there are no adjectives in the user's input, check if the user response is
-		// positive by iterating through the list of the positive responses declared in
-		// the class above
+		//If there are no adjectives in the user's input, get sentiment of whole input
 		if (adjectives.isEmpty()) {
-			for (int i = 0; i < positiveInput.length; i++) {
-				if (str.indexOf(positiveInput[i]) != -1)
-					return true;
-			}
-			return false;
+			if(tool.getSentiment(str)>2)
+				return true;
+			else
+				return false;
 		} else {
-			// if the user input has an adjective, this will evaluate the last one
+			//If the user input has an adjective, this will evaluate the last one
 			for (int i = 0; i < adjectives.size(); i++) {
 				// int value between 0-4 this determines the positivity of the adjective
 				value = tool.getSentiment(adjectives.get(i));
 			}
-			// If the value of the last adjective is >2 this is rated as a positive response
+			//If the value of the last adjective is >2 this is rated as a positive response
 			if (value > 2)
 				return true;
 			else
@@ -157,12 +154,12 @@ public class ChatBot {
 		List<KeyValuePair> tagged = tool.POS(mentions);
 		List<String> adjectives = tool.FindAdjectives(tagged);
 		int value=1;
+		//if there are no adjectives in the user's input, get sentiment of whole input
 		if (adjectives.isEmpty()) {
-			for (int i = 0; i < negativeInput.length; i++) {
-				if (str.indexOf(negativeInput[i]) != -1)
-					return true;
-			}
-			return false;
+			if(tool.getSentiment(str)>2)
+				return true;
+			else
+				return false;
 		} else {
 			// if the user input has an adjective, this will evaluate the last one
 			for (int i = 0; i < adjectives.size(); i++) {
