@@ -23,7 +23,8 @@ public class test_langtoolkit {
 			LanguageToolkit tool = new LanguageToolkit(posModel_filePath);
 			// Determine coref and
 			String mentions = tool.FindCoreferences(text);
-			List<KeyValuePair> tagged = tool.POS(mentions);// tagged key value pairs of key:token, value:tag
+			//KeyValuePair is used to 
+			List<KeyValuePair> tagged = tool.POS(mentions);
 			List<String> adjectives = tool.FindAdjectives(tagged);
 			// Obtain sentiments for each adjective
 			for (int i = 0; i < adjectives.size(); i++) {

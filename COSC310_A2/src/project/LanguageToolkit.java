@@ -16,14 +16,13 @@ import opennlp.tools.namefind.NameFinderME;
 import opennlp.tools.namefind.TokenNameFinderModel;
 //OpenNlP API...
 import opennlp.tools.postag.POSModel;
-import opennlp.tools.postag.POSSample;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.tokenize.WhitespaceTokenizer;
 import opennlp.tools.util.Span;
 /*
- * LanguageToolkit version 1.1
+ * LanguageToolkit version 1.1.2
  * contains constructors and methods for implementing evaluation of user inputs
  */
 
@@ -68,9 +67,7 @@ public class LanguageToolkit{
 	      WhitespaceTokenizer whitespaceTokenizer= WhitespaceTokenizer.INSTANCE; 
 	      String[] tokens = whitespaceTokenizer.tokenize(userInput); 
 	      //Generating tags 
-	      String[] tags = tagger.tag(tokens);
-	      //Instantiating the POSSample class 
-	      POSSample sample = new POSSample(tokens, tags);
+	      String[] tags = tagger.tag(tokens); 
 	      List<KeyValuePair> tokenTagList = new ArrayList<>();
 	      for (int j = 0; j < tokens.length; j++) {
 	    	  tokenTagList.add(new KeyValuePair(tokens[j], tags[j]));
