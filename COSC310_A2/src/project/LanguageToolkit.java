@@ -22,7 +22,7 @@ import opennlp.tools.tokenize.TokenizerModel;
 import opennlp.tools.tokenize.WhitespaceTokenizer;
 import opennlp.tools.util.Span;
 /*
- * LanguageToolkit version 1.1.2
+ * LanguageToolkit version 1.1.2.1
  * contains constructors and methods for implementing evaluation of user inputs
  */
 
@@ -78,7 +78,7 @@ public class LanguageToolkit{
 	//Used to find occurrences of identifiable person names
 	public String FindNamedEnt(String str) throws IOException {
 		//Loading the tokenizer model 
-      InputStream inputStreamTokenizer = new  FileInputStream("C:/Users/thewi/Downloads/en-token.bin");
+      InputStream inputStreamTokenizer = new  FileInputStream("C:/Users/thewi/Downloads/en-token.bin");//must be set to local storage of en-token.bin
       TokenizerModel tokenModel = new TokenizerModel(inputStreamTokenizer); 
       //Instantiating the TokenizerME class 
       TokenizerME tokenizer = new TokenizerME(tokenModel); 

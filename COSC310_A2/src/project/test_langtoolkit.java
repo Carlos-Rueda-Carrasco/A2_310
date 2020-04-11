@@ -23,7 +23,7 @@ public class test_langtoolkit {
 			LanguageToolkit tool = new LanguageToolkit(posModel_filePath);
 			// Determine coref and
 			String mentions = tool.FindCoreferences(text);
-			//KeyValuePair is used to 
+			//1) KeyValuePair used by tool.POS and tool.FindAdjective to create a list of tokens and their POS tag
 			List<KeyValuePair> tagged = tool.POS(mentions);
 			List<String> adjectives = tool.FindAdjectives(tagged);
 			// Obtain sentiments for each adjective
